@@ -1,5 +1,5 @@
 import placeholderImage from "../assets/profile-icon.png";
-
+import { Link } from "react-router-dom";
 function StudentCard({
   _id,
   firstName,
@@ -10,13 +10,22 @@ function StudentCard({
   image,
   className,
 }) {
+
+  function StudentCard ({ student }) {
+    const { _id, firstName, lastName, email, phone, program, image } = student;
+
   return (
       <div
         className={`StudentCard flex justify-between items-center p-3 mb-2 bg-white shadow-sm rounded border border-gray-200 hover:bg-gray-50 ${className}`}
       >
-        <span
-          className="flex items-center justify-center"
-          style={{ flexBasis: "20%" }}
+        <Link
+      to={`/students/${_id}`}
+      state={student}
+      className={`StudentCard flex justify-between items-center p-3 mb-2 bg-white shadow-sm rounded border border-gray-200 hover:bg-gray-50 ${className}`}
+    >
+      <span
+        className="flex items-center justify-center"
+        style={{ flexBasis: "20%" }}
         >
           <img
             src={image || placeholderImage}
